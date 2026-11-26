@@ -56,8 +56,16 @@ export default async function handler(request) {
       });
     } finally { clearTimeout(timeout); }
     if (!res.ok) {
-      console.error("Agnes HTTP status", res.status);
-      return reply("AI服务暂时不可用，请稍后再试。");
+      const errorBody = await res.text();
+
+  console.error("Agnes HTTP status:", res.status);
+
+  console.error(
+    "Agnes error body:",
+    errorBody.slice(0, 1000)
+  );
+
+  return reply("AI服务暂时不可用，请稍后再试。");
     }
     const result = await res.json();
     const content = result?.choices?.[0]?.message?.content;
