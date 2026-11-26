@@ -24,6 +24,24 @@ function extractText(data) {
 }
 
 export default async function handler(request) {
+  if (request.method === "POST") {
+  return new Response(
+    JSON.stringify({
+      version: "1.0",
+      output: {
+        speechType: "output",
+        speechText: "你好，我是智能助理，测试成功。",
+        shouldEndSession: false
+      }
+    }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    }
+  );
+}
   console.log("AliGenie request:", request.method, new URL(request.url).pathname);
   if (request.method === "GET") return new Response("OK", { status: 200 });
   if (request.method !== "POST") return new Response("Method Not Allowed", { status: 405 });
