@@ -24,6 +24,7 @@ function extractText(data) {
 }
 
 export default async function handler(request) {
+  console.log("AliGenie request:", request.method, new URL(request.url).pathname);
   if (request.method === "GET") return new Response("OK", { status: 200 });
   if (request.method !== "POST") return new Response("Method Not Allowed", { status: 405 });
 
