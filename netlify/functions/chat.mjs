@@ -10,7 +10,7 @@ function reply(text, status = 200) {
       returnMessage: "",
       returnValue: {
         reply: String(text),
-        resultType: "RESULT",
+        resultType: "ASK_INF",
         executeCode: "SUCCESS",
         msgInfo: ""
       }
